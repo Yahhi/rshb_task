@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rshb_task/consts/colors.dart';
 import 'package:rshb_task/consts/routes.dart';
 import 'package:rshb_task/model/details_route_parameters.dart';
 import 'package:rshb_task/ui/catalog_screen.dart';
@@ -15,20 +16,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'RSHB',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: AppColors.background,
+        accentColor: AppColors.accentColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FirstScreen(),
       routes: {
-        AppRoutes.HOME_ROUTE: (context) => FirstScreen(),
-        AppRoutes.CATALOG_ROUTE: (context) => CatalogScreen(),
+        AppRoutes.homeRoute: (context) => FirstScreen(),
+        AppRoutes.catalogRoute: (context) => CatalogScreen(),
       },
       onGenerateRoute: _registerRoutesWithParameters,
     );
   }
 
   Route _registerRoutesWithParameters(RouteSettings settings) {
-    if (settings.name == AppRoutes.DETAILS_ROUTE) {
+    if (settings.name == AppRoutes.detailsRoute) {
       final DetailsRouteParameters args = settings.arguments;
       return MaterialPageRoute(
         builder: (context) {

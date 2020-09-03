@@ -1,5 +1,5 @@
 class AppRoutes {
-  static const CATALOG_ROUTE = 'list';
-  static const DETAILS_ROUTE = 'details';
-  static const HOME_ROUTE = 'home';
+  static const catalogRoute = 'list';
+  static const detailsRoute = 'details';
+  static const homeRoute = 'home';
 }

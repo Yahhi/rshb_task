@@ -15,6 +15,6 @@ class FirstScreen extends StatelessWidget {
   }
 
   void _openProductsList(BuildContext context) {
-    Navigator.of(context).pushNamed(AppRoutes.CATALOG_ROUTE);
+    Navigator.of(context).pushNamed(AppRoutes.catalogRoute);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:rshb_task/model/details_route_parameters.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -26,6 +27,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
         slivers: [
           SliverAppBar(
             title: Text(widget.params.product.title),
+            leading: IconButton(
+              icon: SvgPicture.asset('assets/arr_left.svg'),
+              onPressed: Navigator.of(context).pop,
+            ),
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rshb_task/consts/routes.dart';
 import 'package:rshb_task/model/details_route_parameters.dart';
 import 'package:rshb_task/model/product.dart';
@@ -16,6 +17,10 @@ class _CatalogScreenState extends State<CatalogScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Каталог'),
+        leading: IconButton(
+          icon: SvgPicture.asset('assets/arr_left.svg'),
+          onPressed: Navigator.of(context).pop,
+        ),
       ),
       body: RaisedButton(
         child: Text('open details'),
@@ -25,7 +30,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
   }
 
   void _openDetails() {
-    Navigator.of(context).pushNamed(AppRoutes.DETAILS_ROUTE,
+    Navigator.of(context).pushNamed(AppRoutes.detailsRoute,
         arguments: DetailsRouteParameters(Product(1, 'молоко')));
   }
 }
