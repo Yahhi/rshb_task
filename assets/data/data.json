@@ -12,7 +12,8 @@
     "type": "Столовое",
     "bestBefore": 7,
     "manufacturer": "Вкуснняев",
-    "image": "http://lorempixel.com/400/200/food/1/"
+    "image": "http://lorempixel.com/400/200/food/1/",
+    "unit": "1 л"
   },
   {
     "id": 2,
@@ -27,7 +28,8 @@
     "type": "Столовое",
     "bestBefore": 7,
     "manufacturer": "Вкуснняев",
-    "image": "http://lorempixel.com/640/480/food/2/"
+    "image": "http://lorempixel.com/640/480/food/2/",
+    "unit": "1 кг"
   },
   {
     "id": 3,
@@ -42,7 +44,8 @@
     "type": "Столовое",
     "bestBefore": 14,
     "manufacturer": "Гроза полей",
-    "image": "http://lorempixel.com/640/480/food/5/"
+    "image": "http://lorempixel.com/640/480/food/5/",
+    "unit": "1 кг"
   },
   {
     "id": 2,
@@ -57,6 +60,7 @@
     "type": "Столовое",
     "bestBefore": 7,
     "manufacturer": "Гроза полей",
-    "image": "http://lorempixel.com/640/480/food/6/"
+    "image": "http://lorempixel.com/640/480/food/6/",
+    "unit": "1 кг"
   }
 ]

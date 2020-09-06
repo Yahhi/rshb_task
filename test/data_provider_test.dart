@@ -20,48 +20,61 @@ main() {
       type: "Столовое",
       bestBefore: 7,
       manufacturer: "Вкуснняев",
-      isFavorite: false);
-  final cheese = Product(2, "Сыр Пармезан",
-      image: "http://lorempixel.com/640/480/food/2/",
-      price: 10850,
-      averageMark: 3.5,
-      marksCount: 7,
-      description: "Наш сыр имеет уникальный вкус, цвет и запах.",
-      weightNetto: 0.600,
-      weightBrutto: 0.700,
-      category: "Сырный продукт",
-      type: "Столовое",
-      bestBefore: 7,
-      manufacturer: "Вкуснняев",
-      isFavorite: false);
-  final carrot = Product(3, "Морковь",
-      image: "http://lorempixel.com/640/480/food/5/",
-      price: 5000,
-      averageMark: 4.9,
-      marksCount: 2,
-      description:
-          "Как у бабушки на грядке\nВырос овощ очень сладкий,\nПроведем мы тренировку -\nКто быстрей сгрызет морковку",
-      weightNetto: 1.000,
-      weightBrutto: 1.000,
-      category: "Овощи",
-      type: "Столовое",
-      bestBefore: 14,
-      manufacturer: "Гроза полей",
-      isFavorite: false);
-  final cabbage = Product(2, "Капуста",
-      image: "http://lorempixel.com/640/480/food/6/",
-      price: 2390,
-      averageMark: 2.0,
-      marksCount: 1,
-      description:
-          "Бабушка Капуста\nКофт надела густо!\nКофта белая внутри,\nЗеленее – штуки три,\nГуще зелень – три еще,\nТолько это же не все!\nЛистья нижние, что внешне,\nСоставляют край одежды,\nНаклонились до земли,\nКорень спрятали они,\nЧтоб водичкою землица\nС ним могла бы поделиться!",
-      weightNetto: 1.000,
-      weightBrutto: 1.000,
-      category: "Овощи",
-      type: "Столовое",
-      bestBefore: 7,
-      manufacturer: "Гроза полей",
-      isFavorite: false);
+      isFavorite: false,
+      unit: '1 литр');
+  final cheese = Product(
+    2,
+    "Сыр Пармезан",
+    image: "http://lorempixel.com/640/480/food/2/",
+    price: 10850,
+    averageMark: 3.5,
+    marksCount: 7,
+    description: "Наш сыр имеет уникальный вкус, цвет и запах.",
+    weightNetto: 0.600,
+    weightBrutto: 0.700,
+    category: "Сырный продукт",
+    type: "Столовое",
+    bestBefore: 7,
+    manufacturer: "Вкуснняев",
+    isFavorite: false,
+    unit: '1 килограмм',
+  );
+  final carrot = Product(
+    3,
+    "Морковь",
+    image: "http://lorempixel.com/640/480/food/5/",
+    price: 5000,
+    averageMark: 4.9,
+    marksCount: 2,
+    description:
+        "Как у бабушки на грядке\nВырос овощ очень сладкий,\nПроведем мы тренировку -\nКто быстрей сгрызет морковку",
+    weightNetto: 1.000,
+    weightBrutto: 1.000,
+    category: "Овощи",
+    type: "Столовое",
+    bestBefore: 14,
+    manufacturer: "Гроза полей",
+    isFavorite: false,
+    unit: '1 килограмм',
+  );
+  final cabbage = Product(
+    2,
+    "Капуста",
+    image: "http://lorempixel.com/640/480/food/6/",
+    price: 2390,
+    averageMark: 2.0,
+    marksCount: 1,
+    description:
+        "Бабушка Капуста\nКофт надела густо!\nКофта белая внутри,\nЗеленее – штуки три,\nГуще зелень – три еще,\nТолько это же не все!\nЛистья нижние, что внешне,\nСоставляют край одежды,\nНаклонились до земли,\nКорень спрятали они,\nЧтоб водичкою землица\nС ним могла бы поделиться!",
+    weightNetto: 1.000,
+    weightBrutto: 1.000,
+    category: "Овощи",
+    type: "Столовое",
+    bestBefore: 7,
+    manufacturer: "Гроза полей",
+    isFavorite: false,
+    unit: '1 килограмм',
+  );
 
   setUpAll(() {
     WidgetsFlutterBinding.ensureInitialized();
@@ -176,7 +189,8 @@ bool checkPropertiesEquality(ProductShortData a, ProductShortData b) {
       b.description == a.description &&
       b.category == a.category &&
       b.isFavorite == a.isFavorite &&
-      b.manufacturer == a.manufacturer;
+      b.manufacturer == a.manufacturer &&
+      a.unit == b.unit;
 }
 
 class MockSharedPreferences extends Mock implements SharedPreferences {

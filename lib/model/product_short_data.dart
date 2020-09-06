@@ -9,16 +9,21 @@ class ProductShortData {
   final String category;
   final bool isFavorite;
   final String manufacturer;
+  final String unit;
 
-  ProductShortData(this.id, this.title,
-      {this.price,
-      this.image,
-      this.averageMark,
-      this.marksCount,
-      this.description,
-      this.category,
-      this.isFavorite = false,
-      this.manufacturer});
+  ProductShortData(
+    this.id,
+    this.title, {
+    this.price,
+    this.image,
+    this.averageMark,
+    this.marksCount,
+    this.description,
+    this.category,
+    this.isFavorite = false,
+    this.manufacturer,
+    this.unit,
+  });
 
   factory ProductShortData.fromJson(Map<String, dynamic> json) =>
       ProductShortData(
@@ -31,10 +36,11 @@ class ProductShortData {
         description: json['description'],
         category: json['category'],
         manufacturer: json['manufacturer'],
+        unit: json['unit'],
       );
 
   @override
   String toString() {
-    return 'Product ($id, "$title", "$image", $price, $averageMark, $marksCount, "$description", "$category", "$manufacturer", $isFavorite)';
+    return 'Product ($id, "$title", "$image", $price, $averageMark, $marksCount, "$description", "$category", "$manufacturer", "$unit", $isFavorite)';
   }
 }

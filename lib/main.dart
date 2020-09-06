@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rshb_task/consts/colors.dart';
 import 'package:rshb_task/consts/routes.dart';
 import 'package:rshb_task/model/details_route_parameters.dart';
-import 'package:rshb_task/ui/catalog_screen.dart';
-import 'package:rshb_task/ui/details_screen.dart';
+import 'package:rshb_task/ui/catalog_screen/catalog_screen.dart';
+import 'package:rshb_task/ui/details_screen/details_screen.dart';
 import 'package:rshb_task/ui/first_screen.dart';
 
 void main() {
@@ -17,8 +17,28 @@ class MyApp extends StatelessWidget {
       title: 'RSHB',
       theme: ThemeData(
         primaryColor: AppColors.background,
-        accentColor: AppColors.accentColor,
+        accentColor: AppColors.accent,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: TextTheme(
+            button: TextStyle(
+                //buttons text
+                fontFamily: 'SFPro',
+                fontWeight: FontWeight.bold),
+            bodyText2: TextStyle(
+                //main text (any text widget inside body)
+                fontFamily: 'SFPro',
+                fontWeight: FontWeight.normal,
+                fontSize: 12.0)),
+        appBarTheme: AppBarTheme(
+          textTheme: TextTheme(
+            headline6: TextStyle(
+                //AppBar text
+                fontFamily: 'SFPro', //your font family
+                fontWeight: FontWeight.bold,
+                color: AppColors.appBarText,
+                fontSize: 20.0),
+          ),
+        ),
       ),
       home: FirstScreen(),
       routes: {

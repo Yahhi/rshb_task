@@ -1,7 +1,7 @@
-import 'package:rshb_task/model/product.dart';
+import 'package:rshb_task/model/product_short_data.dart';
 
 class DetailsRouteParameters {
-  final Product product;
+  final ProductShortData product;
 
   DetailsRouteParameters(this.product);
 }

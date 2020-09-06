@@ -14,7 +14,8 @@ main() {
       type: "Столовое",
       bestBefore: 7,
       manufacturer: "Вкуснняев",
-      isFavorite: false);
+      isFavorite: false,
+      unit: "1 литр");
 
   test("product can be transformed to short product with the same field values",
       () {
@@ -29,5 +30,6 @@ main() {
     expect(shortProduct.manufacturer, milk.manufacturer);
     expect(shortProduct.description, milk.description);
     expect(shortProduct.marksCount, milk.marksCount);
+    expect(shortProduct.unit, milk.unit);
   });
 }

@@ -15,6 +15,7 @@ class Product {
   final int bestBefore; // срок годности в днях
   final bool isFavorite;
   final String manufacturer;
+  final String unit;
 
   Product(
     this.id,
@@ -31,6 +32,7 @@ class Product {
     this.bestBefore = 1,
     this.isFavorite = false,
     this.manufacturer,
+    this.unit,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -47,22 +49,27 @@ class Product {
         type: json['type'],
         bestBefore: json['bestBefore'],
         manufacturer: json['manufacturer'],
+        unit: json['unit'],
       );
 
   Product applyFavorite(bool isFavorite) {
-    return Product(id, title,
-        image: image,
-        price: price,
-        averageMark: averageMark,
-        marksCount: marksCount,
-        description: description,
-        weightNetto: weightNetto,
-        weightBrutto: weightBrutto,
-        category: category,
-        type: type,
-        bestBefore: bestBefore,
-        manufacturer: manufacturer,
-        isFavorite: isFavorite);
+    return Product(
+      id,
+      title,
+      image: image,
+      price: price,
+      averageMark: averageMark,
+      marksCount: marksCount,
+      description: description,
+      weightNetto: weightNetto,
+      weightBrutto: weightBrutto,
+      category: category,
+      type: type,
+      bestBefore: bestBefore,
+      manufacturer: manufacturer,
+      isFavorite: isFavorite,
+      unit: unit,
+    );
   }
 
   ProductShortData get shortData => ProductShortData(id, title,
@@ -73,10 +80,11 @@ class Product {
       description: description,
       category: category,
       isFavorite: isFavorite,
-      manufacturer: manufacturer);
+      manufacturer: manufacturer,
+      unit: unit);
 
   @override
   String toString() {
-    return 'Product ($id, "$title", $price, $averageMark, $marksCount, "$description", $weightNetto, $weightBrutto, "$category", "$type", $bestBefore, "$manufacturer", $isFavorite)';
+    return 'Product ($id, "$title", $price, $averageMark, $marksCount, "$description", $weightNetto, $weightBrutto, "$category", "$type", $bestBefore, "$manufacturer", "$unit", $isFavorite)';
   }
 }
