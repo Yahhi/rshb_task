@@ -128,9 +128,41 @@ main() {
   });
 
   group("favorites actions", () {
-    test("saved favorites are applied correctly", () {});
+    test("saved favorites are applied correctly", () async {
+      final preferences =
+          MockSharedPreferences(savedValues: {'1': true, '3': true});
+      final dataProvider = DataProvider(
+        preferences: preferences,
+        dataFilename: 'test_resources/data.json',
+      );
 
-    test("favorites is saved to preferences when changed", () {});
+      final data = await dataProvider.getData(
+          isOrderedByPrice: false, isOrderedByRating: false);
+      expect(data.length, 4);
+      expect(data[0].isFavorite, true);
+      expect(data[1].isFavorite, false);
+      expect(data[2].isFavorite, true);
+      expect(data[3].isFavorite, false);
+    });
+
+    test("favorite property is saved to preferences when changed", () async {
+      final preferences =
+          MockSharedPreferences(savedValues: {'1': true, '3': true});
+      final dataProvider = DataProvider(
+        preferences: preferences,
+        dataFilename: 'test_resources/data.json',
+      );
+
+      dataProvider.applyFavorites(2, true);
+      dataProvider.applyFavorites(1, false);
+      final data = await dataProvider.getData(
+          isOrderedByPrice: false, isOrderedByRating: false);
+      expect(data.length, 4);
+      expect(data[0].isFavorite, false);
+      expect(data[1].isFavorite, true);
+      expect(data[2].isFavorite, true);
+      expect(data[3].isFavorite, false);
+    });
   });
 }
 
@@ -148,5 +180,21 @@ bool checkPropertiesEquality(ProductShortData a, ProductShortData b) {
 }
 
 class MockSharedPreferences extends Mock implements SharedPreferences {
-  bool containsKey(String key) => false;
+  Map<String, bool> savedValues;
+
+  MockSharedPreferences({this.savedValues = const {}});
+
+  bool containsKey(String key) => savedValues[key] ?? false;
+
+  bool getBool(String key) => savedValues[key] ?? false;
+
+  Future<bool> setBool(String key, bool value) async {
+    savedValues[key] = value;
+    return true;
+  }
+
+  Future<bool> remove(String key) async {
+    savedValues.remove(key);
+    return true;
+  }
 }

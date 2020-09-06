@@ -64,6 +64,7 @@ class DataProvider {
   }
 
   Future<bool> applyFavorites(int id, bool isFavorite) async {
+    await _isLoaded;
     if (isFavorite) {
       _preferences.setBool(id.toString(), isFavorite);
     } else {
