@@ -18,6 +18,7 @@ class DetailsScreen extends StatefulWidget {
 
 class _DetailsScreenState extends State<DetailsScreen> {
   bool hasFullDetails = false;
+  bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -36,4 +37,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
       ),
     );
   }
+
+  /*Future _updateProductFavorites(bool isFavorite) async {
+    RepositoryProvider.of<DataProvider>(context)
+        .applyFavorites(widget.params.product.id, isFavorite);
+  }*/
 }

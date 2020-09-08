@@ -58,7 +58,7 @@ main() {
     unit: '1 килограмм',
   );
   final cabbage = Product(
-    2,
+    4,
     "Капуста",
     image: "http://lorempixel.com/640/480/food/6/",
     price: 2390,
@@ -119,9 +119,9 @@ main() {
       expect(checkPropertiesEquality(data[3], cabbage.shortData), true);
     });
 
-    test("data is filtered by category correctly", () async {
+    test("data is filtered by one category correctly", () async {
       final data = await dataProvider.getData(
-          categoryFilter: "Овощи",
+          categoryFilter: ["Овощи"],
           isOrderedByRating: false,
           isOrderedByPrice: false);
       expect(data.length, 2);
@@ -129,9 +129,21 @@ main() {
       expect(checkPropertiesEquality(data[1], cabbage.shortData), true);
     });
 
+    test("data is filtered by two categories correctly", () async {
+      final data = await dataProvider.getData(
+          categoryFilter: ["Овощи", "Сырный продукт"],
+          isOrderedByPrice: false,
+          isOrderedByRating: false);
+      expect(data.length, 4);
+      expect(checkPropertiesEquality(data[0], milk.shortData), true);
+      expect(checkPropertiesEquality(data[1], cheese.shortData), true);
+      expect(checkPropertiesEquality(data[2], carrot.shortData), true);
+      expect(checkPropertiesEquality(data[3], cabbage.shortData), true);
+    });
+
     test("data is filtered and sorted correctly", () async {
       final data = await dataProvider.getData(
-          categoryFilter: "Овощи",
+          categoryFilter: ["Овощи"],
           isOrderedByPrice: true,
           isOrderedByRating: false);
       expect(data.length, 2);

@@ -7,7 +7,7 @@ class FavoritesButton extends StatelessWidget {
   final Function(bool) onSelectionChange;
 
   const FavoritesButton(
-      {Key key, this.isSelected = false, this.onSelectionChange})
+      {Key key, this.isSelected = false, @required this.onSelectionChange})
       : super(key: key);
 
   @override

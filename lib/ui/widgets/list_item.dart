@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rshb_task/consts/colors.dart';
 import 'package:rshb_task/consts/routes.dart';
 import 'package:rshb_task/model/details_route_parameters.dart';
 import 'package:rshb_task/model/product_short_data.dart';
+import 'package:rshb_task/ui/catalog_screen/catalog_bloc.dart';
+import 'package:rshb_task/ui/catalog_screen/catalog_event.dart';
 import 'package:rshb_task/ui/widgets/favorites_button.dart';
 import 'package:rshb_task/ui/widgets/mark_view.dart';
 import 'package:rshb_task/utils/view_helper.dart';
@@ -47,6 +50,9 @@ class ListItem extends StatelessWidget {
                     padding: EdgeInsets.only(top: 11, right: 11),
                     child: FavoritesButton(
                       isSelected: data.isFavorite,
+                      onSelectionChange: (isSelected) =>
+                          BlocProvider.of<CatalogBloc>(context).add(
+                              SetFavoritesPropertyEvent(data.id, isSelected)),
                     ),
                   ),
                 ),

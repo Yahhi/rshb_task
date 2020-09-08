@@ -1,4 +1,6 @@
-class ProductShortData {
+import 'package:equatable/equatable.dart';
+
+class ProductShortData extends Equatable {
   final int id;
   final String title;
   final String image;
@@ -25,6 +27,18 @@ class ProductShortData {
     this.unit,
   });
 
+  ProductShortData copyWithUpdatedFavorites(bool isFavorite) =>
+      ProductShortData(this.id, this.title,
+          price: price,
+          image: image,
+          averageMark: averageMark,
+          marksCount: marksCount,
+          description: description,
+          category: category,
+          isFavorite: isFavorite,
+          manufacturer: manufacturer,
+          unit: unit);
+
   factory ProductShortData.fromJson(Map<String, dynamic> json) =>
       ProductShortData(
         json['id'],
@@ -43,4 +57,19 @@ class ProductShortData {
   String toString() {
     return 'Product ($id, "$title", "$image", $price, $averageMark, $marksCount, "$description", "$category", "$manufacturer", "$unit", $isFavorite)';
   }
+
+  @override
+  List<Object> get props => [
+        id,
+        title,
+        image,
+        price,
+        averageMark,
+        marksCount,
+        description,
+        category,
+        manufacturer,
+        unit,
+        isFavorite
+      ];
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:flutter/services.dart';
 import 'package:rshb_task/model/product.dart';
 import 'package:rshb_task/model/product_short_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,8 +22,9 @@ class DataProvider {
   Future<bool> _initData(
       SharedPreferences preferences, String dataFilename) async {
     _preferences = preferences ?? (await SharedPreferences.getInstance());
-    final file = File(dataFilename ?? _fileName);
-    final fileContent = await file.readAsString();
+    final fileContent = dataFilename == null
+        ? (await PlatformAssetBundle().loadString(_fileName))
+        : await File(dataFilename).readAsString();
     final List<dynamic> jsonArray = jsonDecode(fileContent);
     _loadedData =
         jsonArray.map((e) => Product.fromJson(e)).toList(growable: false);
@@ -31,15 +33,15 @@ class DataProvider {
   }
 
   Future<List<ProductShortData>> getData(
-      {String categoryFilter,
+      {List<String> categoryFilter,
       bool isOrderedByRating = false,
       bool isOrderedByPrice = false}) async {
     await _isLoaded;
     await Future.delayed(Duration(milliseconds: _random.nextInt(300) + 300));
-    final calculatedData = categoryFilter == null
+    final calculatedData = categoryFilter == null || categoryFilter.isEmpty
         ? List<Product>.from(_loadedData, growable: false)
         : _loadedData
-            .where((element) => element.category == categoryFilter)
+            .where((element) => categoryFilter.contains(element.category))
             .toList(growable: false);
     if (isOrderedByRating)
       calculatedData.sort((a, b) => b.averageMark.compareTo(a.averageMark));

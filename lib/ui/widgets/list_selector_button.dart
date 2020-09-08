@@ -12,7 +12,7 @@ class ListSelectorButton extends StatelessWidget {
     this.text,
     this.iconAddress, {
     Key key,
-    this.isSelected = false,
+    this.isSelected,
     this.action,
   }) : super(key: key);
 
@@ -34,7 +34,9 @@ class ListSelectorButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: isSelected ? AppColors.accent : AppColors.border,
+                    color: isSelected ?? false
+                        ? AppColors.accent
+                        : AppColors.border,
                     width: 1.0,
                   ),
                 ),
@@ -43,7 +45,7 @@ class ListSelectorButton extends StatelessWidget {
                   iconAddress,
                   width: 16.0,
                   height: 16.0,
-                  color: isSelected ? AppColors.accent : null,
+                  color: isSelected ?? false ? AppColors.accent : null,
                 ),
               ),
               onTap: action,
@@ -53,7 +55,9 @@ class ListSelectorButton extends StatelessWidget {
                 child: Text(
                   text,
                   style: TextStyle(
-                    color: isSelected ? AppColors.accent : AppColors.shadedText,
+                    color: isSelected ?? false
+                        ? AppColors.accent
+                        : AppColors.shadedText,
                     fontSize: 12.0,
                   ),
                   overflow: TextOverflow.fade,

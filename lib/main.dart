@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rshb_task/consts/colors.dart';
 import 'package:rshb_task/consts/routes.dart';
 import 'package:rshb_task/model/details_route_parameters.dart';
+import 'package:rshb_task/providers/data_provider.dart';
+import 'package:rshb_task/ui/catalog_screen/catalog_bloc.dart';
 import 'package:rshb_task/ui/catalog_screen/catalog_screen.dart';
-import 'package:rshb_task/ui/details_screen/details_screen.dart';
+import 'package:rshb_task/ui/details_screen.dart';
 import 'package:rshb_task/ui/first_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  final dataProvider = DataProvider();
+  runApp(RepositoryProvider(
+    create: (_) => dataProvider,
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -43,7 +51,11 @@ class MyApp extends StatelessWidget {
       home: FirstScreen(),
       routes: {
         AppRoutes.homeRoute: (context) => FirstScreen(),
-        AppRoutes.catalogRoute: (context) => CatalogScreen(),
+        AppRoutes.catalogRoute: (context) => BlocProvider<CatalogBloc>(
+              create: (context) =>
+                  CatalogBloc(RepositoryProvider.of<DataProvider>(context)),
+              child: CatalogScreen(),
+            ),
       },
       onGenerateRoute: _registerRoutesWithParameters,
     );
