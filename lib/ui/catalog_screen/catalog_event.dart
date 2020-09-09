@@ -40,3 +40,8 @@ class SetFavoritesPropertyEvent extends CatalogEvent {
   @override
   List<Object> get props => [id, isFavorite];
 }
+
+class NeedUpdateEvent extends CatalogEvent {
+  @override
+  List<Object> get props => [];
+}

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rshb_task/model/product_short_data.dart';
 import 'package:rshb_task/ui/catalog_screen/catalog_bloc.dart';
 import 'package:rshb_task/ui/catalog_screen/catalog_event.dart';
+import 'package:rshb_task/ui/widgets/app_bar_back.dart';
 import 'package:rshb_task/ui/widgets/list_item.dart';
 import 'package:rshb_task/ui/widgets/list_selector_button.dart';
 
@@ -22,10 +22,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Каталог'),
-        leading: IconButton(
-          icon: SvgPicture.asset('assets/arr_left.svg'),
-          onPressed: Navigator.of(context).pop,
-        ),
+        leading: AppBarBack(),
       ),
       body: BlocBuilder<CatalogBloc, CatalogState>(
         builder: (context, state) {

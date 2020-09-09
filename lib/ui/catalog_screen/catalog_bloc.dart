@@ -48,6 +48,12 @@ class CatalogBloc extends Bloc<CatalogEvent, CatalogState> {
           data[indexOfUpdated].copyWithUpdatedFavorites(event.isFavorite);
       yield state.copyWith(data: data);
       dataProvider.applyFavorites(event.id, event.isFavorite);
+    } else if (event is NeedUpdateEvent) {
+      yield state.copyWith(isLoading: true);
+      _loadData(
+          categories: state.selectedCategories,
+          isOrderedByPrice: state.isOrderedByPrice,
+          isOrderedByRating: state.isOrderedByRating);
     } else if (event is DataLoadedEvent) {
       yield state.copyWith(data: event.data);
     }

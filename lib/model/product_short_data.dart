@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:rshb_task/model/product.dart';
 
 class ProductShortData extends Equatable {
   final int id;
@@ -72,4 +73,15 @@ class ProductShortData extends Equatable {
         unit,
         isFavorite
       ];
+
+  Product toFullProduct() => Product(id, title,
+      image: image,
+      price: price,
+      averageMark: averageMark,
+      marksCount: marksCount,
+      description: description,
+      category: category,
+      manufacturer: manufacturer,
+      unit: unit,
+      isFavorite: isFavorite);
 }

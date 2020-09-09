@@ -8,6 +8,7 @@ import 'package:rshb_task/ui/catalog_screen/catalog_bloc.dart';
 import 'package:rshb_task/ui/catalog_screen/catalog_event.dart';
 import 'package:rshb_task/ui/widgets/favorites_button.dart';
 import 'package:rshb_task/ui/widgets/mark_view.dart';
+import 'package:rshb_task/ui/widgets/product_title.dart';
 import 'package:rshb_task/utils/view_helper.dart';
 
 class ListItem extends StatelessWidget {
@@ -68,26 +69,10 @@ class ListItem extends StatelessWidget {
                     SizedBox(
                       height: 12,
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          data.title,
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: AppColors.appBarText,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            '/ ${data.unit}',
-                            style: TextStyle(
-                              fontSize: 10.0,
-                              color: AppColors.shadedText,
-                            ),
-                          ),
-                        )
-                      ],
+                    ProductTitle(
+                      data.title,
+                      data.unit,
+                      isSmall: true,
                     ),
                     SizedBox(
                       height: 4.0,
@@ -118,12 +103,13 @@ class ListItem extends StatelessWidget {
                     ),
                     Expanded(
                       child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            ViewHelper.readablePrice(data.price),
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w600),
-                          )),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          ViewHelper.readablePrice(data.price),
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -135,8 +121,9 @@ class ListItem extends StatelessWidget {
     );
   }
 
-  void _openDetails(BuildContext context) {
-    Navigator.of(context).pushNamed(AppRoutes.detailsRoute,
+  Future _openDetails(BuildContext context) async {
+    await Navigator.of(context).pushNamed(AppRoutes.detailsRoute,
         arguments: DetailsRouteParameters(data));
+    BlocProvider.of<CatalogBloc>(context).add(NeedUpdateEvent());
   }
 }

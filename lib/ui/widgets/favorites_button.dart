@@ -5,9 +5,13 @@ import 'package:rshb_task/consts/colors.dart';
 class FavoritesButton extends StatelessWidget {
   final bool isSelected;
   final Function(bool) onSelectionChange;
+  final bool isSmall;
 
   const FavoritesButton(
-      {Key key, this.isSelected = false, @required this.onSelectionChange})
+      {Key key,
+      this.isSelected = false,
+      @required this.onSelectionChange,
+      this.isSmall = true})
       : super(key: key);
 
   @override
@@ -15,8 +19,8 @@ class FavoritesButton extends StatelessWidget {
     return InkWell(
       onTap: () => onSelectionChange(!isSelected),
       child: Container(
-        width: 32.0,
-        height: 32.0,
+        width: isSmall ? 32.0 : 40.0,
+        height: isSmall ? 32.0 : 40.0,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(color: AppColors.innerBorder),

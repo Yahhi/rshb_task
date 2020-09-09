@@ -52,6 +52,32 @@ class Product {
         unit: json['unit'],
       );
 
+  List<MapEntry<String, String>> get properties => [
+        MapEntry('Вес продукта', _weightNettoString),
+        MapEntry('Вес продукта с упаковкой', _weightBruttoString),
+        MapEntry('Категория', category),
+        MapEntry('Тип маркировки', type),
+        MapEntry('Срок годности', '$bestBefore суток'),
+        MapEntry('Вес продукта', _weightNettoString),
+        MapEntry('Вес продукта с упаковкой', _weightBruttoString),
+        MapEntry('Категория', category),
+        MapEntry('Тип маркировки', type),
+        MapEntry('Срок годности', '$bestBefore суток'),
+      ];
+
+  String get _weightBruttoString =>
+      weightBrutto == null ? '-' : '${weightBrutto.toStringAsFixed(3)} кг';
+  String get _weightNettoString =>
+      weightNetto == null ? '-' : '${weightNetto.toStringAsFixed(3)} кг';
+
+  List<MapEntry<String, String>> get shortProperties => [
+        MapEntry('Вес продукта', _weightNettoString),
+        MapEntry('Вес продукта с упаковкой', _weightBruttoString),
+        MapEntry('Категория', category),
+        MapEntry('Тип маркировки', type),
+        MapEntry('Срок годности', '$bestBefore суток'),
+      ];
+
   Product applyFavorite(bool isFavorite) {
     return Product(
       id,
