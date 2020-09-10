@@ -6,72 +6,72 @@ import 'package:rshb_task/model/product_short_data.dart';
 import 'package:rshb_task/providers/data_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-main() {
-  final milk = Product(1, "Молоко 5%",
-      image: "http://lorempixel.com/400/200/food/1/",
+void main() {
+  final milk = Product(1, 'Молоко 5%',
+      image: 'http://lorempixel.com/400/200/food/1/',
       price: 10000,
       averageMark: 5.0,
       marksCount: 7,
       description:
-          "Наше молоко и сливки поступают на завод в тот же день, когда доят коров, и это свежее пастеризованное для обеспечения качества при сохранении его свежего фермерского вкуса и питательной ценности. Мы делаем это, чтобы ваша семья могла наслаждаться клеверным молоком и сливками с чистой совестью и хорошим здоровьем! Без гармона роста (rBST) и без антибиотиков — свежего пастеризованного для обеспечения качества — без глютена — с низким содержанием натрия.",
+          'Наше молоко и сливки поступают на завод в тот же день, когда доят коров, и это свежее пастеризованное для обеспечения качества при сохранении его свежего фермерского вкуса и питательной ценности. Мы делаем это, чтобы ваша семья могла наслаждаться клеверным молоком и сливками с чистой совестью и хорошим здоровьем! Без гармона роста (rBST) и без антибиотиков — свежего пастеризованного для обеспечения качества — без глютена — с низким содержанием натрия.',
       weightNetto: 1.680,
       weightBrutto: 1.780,
-      category: "Сырный продукт",
-      type: "Столовое",
+      category: 'Сырный продукт',
+      type: 'Столовое',
       bestBefore: 7,
-      manufacturer: "Вкуснняев",
+      manufacturer: 'Вкуснняев',
       isFavorite: false,
       unit: '1 литр');
   final cheese = Product(
     2,
-    "Сыр Пармезан",
-    image: "http://lorempixel.com/640/480/food/2/",
+    'Сыр Пармезан',
+    image: 'http://lorempixel.com/640/480/food/2/',
     price: 10850,
     averageMark: 3.5,
     marksCount: 7,
-    description: "Наш сыр имеет уникальный вкус, цвет и запах.",
+    description: 'Наш сыр имеет уникальный вкус, цвет и запах.',
     weightNetto: 0.600,
     weightBrutto: 0.700,
-    category: "Сырный продукт",
-    type: "Столовое",
+    category: 'Сырный продукт',
+    type: 'Столовое',
     bestBefore: 7,
-    manufacturer: "Вкуснняев",
+    manufacturer: 'Вкуснняев',
     isFavorite: false,
     unit: '1 килограмм',
   );
   final carrot = Product(
     3,
-    "Морковь",
-    image: "http://lorempixel.com/640/480/food/5/",
+    'Морковь',
+    image: 'http://lorempixel.com/640/480/food/5/',
     price: 5000,
     averageMark: 4.9,
     marksCount: 2,
     description:
-        "Как у бабушки на грядке\nВырос овощ очень сладкий,\nПроведем мы тренировку -\nКто быстрей сгрызет морковку",
+        'Как у бабушки на грядке\nВырос овощ очень сладкий,\nПроведем мы тренировку -\nКто быстрей сгрызет морковку',
     weightNetto: 1.000,
     weightBrutto: 1.000,
-    category: "Овощи",
-    type: "Столовое",
+    category: 'Овощи',
+    type: 'Столовое',
     bestBefore: 14,
-    manufacturer: "Гроза полей",
+    manufacturer: 'Гроза полей',
     isFavorite: false,
     unit: '1 килограмм',
   );
   final cabbage = Product(
     4,
-    "Капуста",
-    image: "http://lorempixel.com/640/480/food/6/",
+    'Капуста',
+    image: 'http://lorempixel.com/640/480/food/6/',
     price: 2390,
     averageMark: 2.0,
     marksCount: 1,
     description:
-        "Бабушка Капуста\nКофт надела густо!\nКофта белая внутри,\nЗеленее – штуки три,\nГуще зелень – три еще,\nТолько это же не все!\nЛистья нижние, что внешне,\nСоставляют край одежды,\nНаклонились до земли,\nКорень спрятали они,\nЧтоб водичкою землица\nС ним могла бы поделиться!",
+        'Бабушка Капуста\nКофт надела густо!\nКофта белая внутри,\nЗеленее – штуки три,\nГуще зелень – три еще,\nТолько это же не все!\nЛистья нижние, что внешне,\nСоставляют край одежды,\nНаклонились до земли,\nКорень спрятали они,\nЧтоб водичкою землица\nС ним могла бы поделиться!',
     weightNetto: 1.000,
     weightBrutto: 1.000,
-    category: "Овощи",
-    type: "Столовое",
+    category: 'Овощи',
+    type: 'Столовое',
     bestBefore: 7,
-    manufacturer: "Гроза полей",
+    manufacturer: 'Гроза полей',
     isFavorite: false,
     unit: '1 килограмм',
   );
@@ -80,7 +80,7 @@ main() {
     WidgetsFlutterBinding.ensureInitialized();
   });
 
-  group("list actions", () {
+  group('list actions', () {
     DataProvider dataProvider;
 
     setUpAll(() {
@@ -91,7 +91,7 @@ main() {
       );
     });
 
-    test("data is decoded from json correctly", () async {
+    test('data is decoded from json correctly', () async {
       final data = await dataProvider.getData(
           isOrderedByPrice: false, isOrderedByRating: false);
       expect(data.length, 4);
@@ -101,7 +101,7 @@ main() {
       expect(checkPropertiesEquality(data[3], cabbage.shortData), true);
     });
 
-    test("data is sorted by price correctly", () async {
+    test('data is sorted by price correctly', () async {
       final data = await dataProvider.getData(isOrderedByPrice: true);
       expect(data.length, 4);
       expect(checkPropertiesEquality(data[0], cabbage.shortData), true);
@@ -110,7 +110,7 @@ main() {
       expect(checkPropertiesEquality(data[3], cheese.shortData), true);
     });
 
-    test("data is sorted by rating correctly", () async {
+    test('data is sorted by rating correctly', () async {
       final data = await dataProvider.getData(isOrderedByRating: true);
       expect(data.length, 4);
       expect(checkPropertiesEquality(data[0], milk.shortData), true);
@@ -119,9 +119,9 @@ main() {
       expect(checkPropertiesEquality(data[3], cabbage.shortData), true);
     });
 
-    test("data is filtered by one category correctly", () async {
+    test('data is filtered by one category correctly', () async {
       final data = await dataProvider.getData(
-          categoryFilter: ["Овощи"],
+          categoryFilter: ['Овощи'],
           isOrderedByRating: false,
           isOrderedByPrice: false);
       expect(data.length, 2);
@@ -129,9 +129,9 @@ main() {
       expect(checkPropertiesEquality(data[1], cabbage.shortData), true);
     });
 
-    test("data is filtered by two categories correctly", () async {
+    test('data is filtered by two categories correctly', () async {
       final data = await dataProvider.getData(
-          categoryFilter: ["Овощи", "Сырный продукт"],
+          categoryFilter: ['Овощи', 'Сырный продукт'],
           isOrderedByPrice: false,
           isOrderedByRating: false);
       expect(data.length, 4);
@@ -141,9 +141,9 @@ main() {
       expect(checkPropertiesEquality(data[3], cabbage.shortData), true);
     });
 
-    test("data is filtered and sorted correctly", () async {
+    test('data is filtered and sorted correctly', () async {
       final data = await dataProvider.getData(
-          categoryFilter: ["Овощи"],
+          categoryFilter: ['Овощи'],
           isOrderedByPrice: true,
           isOrderedByRating: false);
       expect(data.length, 2);
@@ -152,8 +152,8 @@ main() {
     });
   });
 
-  group("favorites actions", () {
-    test("saved favorites are applied correctly", () async {
+  group('favorites actions', () {
+    test('saved favorites are applied correctly', () async {
       final preferences =
           MockSharedPreferences(savedValues: {'1': true, '3': true});
       final dataProvider = DataProvider(
@@ -170,7 +170,7 @@ main() {
       expect(data[3].isFavorite, false);
     });
 
-    test("favorite property is saved to preferences when changed", () async {
+    test('favorite property is saved to preferences when changed', () async {
       final preferences =
           MockSharedPreferences(savedValues: {'1': true, '3': true});
       final dataProvider = DataProvider(
@@ -178,8 +178,8 @@ main() {
         dataFilename: 'test_resources/data.json',
       );
 
-      dataProvider.applyFavorites(2, true);
-      dataProvider.applyFavorites(1, false);
+      await dataProvider.applyFavorites(2, true);
+      await dataProvider.applyFavorites(1, false);
       final data = await dataProvider.getData(
           isOrderedByPrice: false, isOrderedByRating: false);
       expect(data.length, 4);
@@ -210,15 +210,19 @@ class MockSharedPreferences extends Mock implements SharedPreferences {
 
   MockSharedPreferences({this.savedValues = const {}});
 
+  @override
   bool containsKey(String key) => savedValues[key] ?? false;
 
+  @override
   bool getBool(String key) => savedValues[key] ?? false;
 
+  @override
   Future<bool> setBool(String key, bool value) async {
     savedValues[key] = value;
     return true;
   }
 
+  @override
   Future<bool> remove(String key) async {
     savedValues.remove(key);
     return true;

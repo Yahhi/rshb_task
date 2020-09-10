@@ -43,10 +43,12 @@ class DataProvider {
         : _loadedData
             .where((element) => categoryFilter.contains(element.category))
             .toList(growable: false);
-    if (isOrderedByRating)
+    if (isOrderedByRating) {
       calculatedData.sort((a, b) => b.averageMark.compareTo(a.averageMark));
-    if (isOrderedByPrice)
+    }
+    if (isOrderedByPrice) {
       calculatedData.sort((a, b) => a.price.compareTo(b.price));
+    }
     return calculatedData.map((e) => e.shortData).toList(growable: false);
   }
 
@@ -68,9 +70,9 @@ class DataProvider {
   Future<bool> applyFavorites(int id, bool isFavorite) async {
     await _isLoaded;
     if (isFavorite) {
-      _preferences.setBool(id.toString(), isFavorite);
+      await _preferences.setBool(id.toString(), isFavorite);
     } else {
-      _preferences.remove(id.toString());
+      await _preferences.remove(id.toString());
     }
     final index = _loadedData.indexWhere((element) => element.id == id);
     _loadedData[index] = _loadedData[index].applyFavorite(isFavorite);

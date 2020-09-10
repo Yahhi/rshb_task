@@ -10,7 +10,7 @@ extension TabsHelper on TabSelection {
       case TabSelection.tours:
         return 'Агротуры';
       default:
-        return this.toString().split('.').last;
+        return toString().split('.').last;
     }
   }
 

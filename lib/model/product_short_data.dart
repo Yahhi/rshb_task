@@ -29,7 +29,7 @@ class ProductShortData extends Equatable {
   });
 
   ProductShortData copyWithUpdatedFavorites(bool isFavorite) =>
-      ProductShortData(this.id, this.title,
+      ProductShortData(id, title,
           price: price,
           image: image,
           averageMark: averageMark,

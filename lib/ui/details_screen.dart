@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pedantic/pedantic.dart';
 import 'package:rshb_task/consts/colors.dart';
 import 'package:rshb_task/model/details_route_parameters.dart';
 import 'package:rshb_task/model/product.dart';
@@ -166,8 +167,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
   }
 
   Future _updateProductFavorites(bool isFavorite) async {
-    RepositoryProvider.of<DataProvider>(context)
-        .applyFavorites(widget.params.product.id, isFavorite);
+    unawaited(RepositoryProvider.of<DataProvider>(context)
+        .applyFavorites(widget.params.product.id, isFavorite));
 
     setState(() {
       this.isFavorite = isFavorite;
