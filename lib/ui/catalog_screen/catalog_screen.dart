@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,57 +33,62 @@ class _CatalogScreenState extends State<CatalogScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Каталог'),
+        leading: Container(
+          alignment: Alignment.center,
+          padding: EdgeInsets.only(left: 16),
+          child: InkWell(
+            onTap: Navigator.of(context).pop,
+            child: Container(
+              width: 40.0,
+              height: 40.0,
+              child: Center(
+                child: SvgPicture.asset('assets/arr_left.svg'),
+              ),
+            ),
+          ),
+        ),
+      ),
       body: BlocBuilder<CatalogBloc, CatalogState>(builder: (context, state) {
         return NestedScrollView(
           floatHeaderSlivers: true,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
-              SliverAppBar(
-                expandedHeight: 240,
-                title: Text('Каталог'),
-                leading: Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(left: 16),
-                  child: InkWell(
-                    onTap: Navigator.of(context).pop,
-                    child: Container(
-                      width: 40.0,
-                      height: 40.0,
-                      child: Center(
-                        child: SvgPicture.asset('assets/arr_left.svg'),
-                      ),
+              SliverPersistentHeader(
+                delegate: _SliverAppBarDelegate(
+                  minHeight: 0,
+                  maxHeight: 200,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        Tabs(_selection, _onTabSelectionChange),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                        Container(
+                          height: 76,
+                          child: PageView(
+                            physics: NeverScrollableScrollPhysics(),
+                            controller: _selectorsViewController,
+                            children: [
+                              _buildSelectors(
+                                  context,
+                                  state.selectedCategories ?? [],
+                                  state.isOrderedByRating ?? false,
+                                  state.isOrderedByPrice ?? false),
+                              Container(),
+                              Container(),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                pinned: true,
-                flexibleSpace: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    SizedBox(
-                      height: 80,
-                    ),
-                    Tabs(_selection, _onTabSelectionChange),
-                    SizedBox(
-                      height: 30.0,
-                    ),
-                    Container(
-                      height: 76,
-                      child: PageView(
-                        physics: NeverScrollableScrollPhysics(),
-                        controller: _selectorsViewController,
-                        children: [
-                          _buildSelectors(
-                              context,
-                              state.selectedCategories ?? [],
-                              state.isOrderedByRating ?? false,
-                              state.isOrderedByPrice ?? false),
-                          Container(),
-                          Container(),
-                        ],
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ];
@@ -173,7 +180,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
       childAspectRatio: 0.66,
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       children: data.map((e) => ListItem(e)).toList(growable: false),
     );
   }
@@ -187,5 +194,32 @@ class _CatalogScreenState extends State<CatalogScreen> {
     setState(() {
       _selection = value;
     });
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate({
+    @required this.minHeight,
+    @required this.maxHeight,
+    @required this.child,
+  });
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+  @override
+  double get minExtent => minHeight;
+  @override
+  double get maxExtent => max(maxHeight, minHeight);
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return new SizedBox.expand(child: child);
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
   }
 }

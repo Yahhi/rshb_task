@@ -62,5 +62,37 @@
     "manufacturer": "Гроза полей",
     "image": "http://lorempixel.com/640/480/food/6/",
     "unit": "1 кг"
+  },
+  {
+    "id": 5,
+    "title": "Куриное мясо",
+    "price": 50000,
+    "averageMark": 4.8,
+    "marksCount": 3,
+    "description": "Мясо",
+    "weightNetto": 1.000,
+    "weightBrutto": 1.000,
+    "category": "Мясо",
+    "type": "Столовое",
+    "bestBefore": 14,
+    "manufacturer": "Куры Рядом",
+    "image": "http://lorempixel.com/640/480/food/8/",
+    "unit": "1 кг"
+  },
+  {
+    "id": 6,
+    "title": "Мясо индейки",
+    "price": 50000,
+    "averageMark": 3.8,
+    "marksCount": 3,
+    "description": "Мясо",
+    "weightNetto": 1.000,
+    "weightBrutto": 1.000,
+    "category": "Мясо",
+    "type": "Столовое",
+    "bestBefore": 14,
+    "manufacturer": "Куры Рядом",
+    "image": "http://lorempixel.com/640/480/food/9/",
+    "unit": "1 кг"
   }
 ]
